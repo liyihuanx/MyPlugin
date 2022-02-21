@@ -9,8 +9,9 @@ import android.util.Log
  */
 object ErrorTest {
 
+    @JvmStatic
     fun pluginFun(){
-        Log.d("QWER", "pluginFun: fit up")
+        Log.d("QWER", "pluginFun: fix up")
     }
 
 }

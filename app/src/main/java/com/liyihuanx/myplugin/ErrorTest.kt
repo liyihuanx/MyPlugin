@@ -9,6 +9,7 @@ import android.util.Log
  */
 object ErrorTest {
 
+    @JvmStatic
     fun pluginFun(){
         Log.d("QWER", "--- plugin before ---")
     }

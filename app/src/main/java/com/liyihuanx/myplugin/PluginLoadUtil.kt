@@ -11,7 +11,7 @@ import dalvik.system.PathClassLoader
  */
 object PluginLoadUtil {
 
-    private const val plugin_path = "/data/data/com.liyihuanx.myplugin/fix.dex"
+    private const val plugin_path = "/data/data/com.liyihuanx.myplugin/fix1.dex"
 
     /**
      * 1.dex文件是什么，代表什么，存放在哪
@@ -56,7 +56,7 @@ object PluginLoadUtil {
         // 4.获取插件对象的
         // 插件的类加载器
         val pluginClassLoader: ClassLoader =
-            PathClassLoader(plugin_path, context.cacheDir.absolutePath, hostPathClassloader)
+            PathClassLoader(plugin_path, hostPathClassloader)
         // DexPathList类的对象
         val pluginPathList = pathListFile.get(pluginClassLoader)
         // 拿到dexElements
@@ -65,6 +65,7 @@ object PluginLoadUtil {
 
         // 5.做合并
         // 创建一个数组,为什么不能直接创建，而要用反射
+        // 直接创建你没有Elements类的引用，Element是DexPathList里的一个内部类，本身DexPathList你都没办法拿到他的引用，更何况Element。
         val newDexElements =
             java.lang.reflect.Array.newInstance(hostDexElements.javaClass.componentType,
                 hostDexElements.size + pluginDexElements.size) as Array<*>
@@ -80,7 +81,8 @@ object PluginLoadUtil {
 
         // 赋值
         // hostDexElements + newDexElements
-        dexElementsFile[hostPathList] = newDexElements
+//        dexElementsFile[hostPathList] = newDexElements
+        dexElementsFile.set(hostPathList, newDexElements)
     }
 
 }
