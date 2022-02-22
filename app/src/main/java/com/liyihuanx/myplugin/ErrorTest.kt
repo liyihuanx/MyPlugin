@@ -11,7 +11,8 @@ object ErrorTest {
 
     @JvmStatic
     fun pluginFun(){
-        Log.d("QWER", "--- plugin before ---")
+//        throw Exception("出错")
+        Log.d("QWER", "fix native fun")
     }
 
 }

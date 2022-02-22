@@ -11,9 +11,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         tvCenter.setOnClickListener {
+//            loadPluginClass2()
 
+            ErrorTest.pluginFun()
         }
-        ErrorTest.pluginFun()
+
 
     }
 
@@ -23,6 +25,12 @@ class MainActivity : AppCompatActivity() {
     private fun loadPluginClass(){
         val pathClassloader = PathClassLoader("/data/data/com.liyihuanx.myplugin/fix1.dex", classLoader)
         val clazz = pathClassloader.loadClass("com.liyihuanx.plugin.ErrorTest")
+        val method = clazz.getMethod("pluginFun")
+        method.invoke(null)
+    }
+
+    private fun loadPluginClass2(){
+        val clazz = Class.forName("com.liyihuanx.plugin.ErrorTest")
         val method = clazz.getMethod("pluginFun")
         method.invoke(null)
     }
