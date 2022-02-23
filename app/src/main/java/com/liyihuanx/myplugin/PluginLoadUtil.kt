@@ -11,7 +11,7 @@ import dalvik.system.PathClassLoader
  */
 object PluginLoadUtil {
 
-    private const val plugin_path = "/data/data/com.liyihuanx.myplugin/fix.dex"
+    private const val plugin_path = "/data/data/com.liyihuanx.myplugin/plugin-debug.apk"
 
     /**
      * 1.dex文件是什么，代表什么，存放在哪

@@ -13,17 +13,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         tvCenter.setOnClickListener {
-//            loadPluginClass2()
-
-            ErrorTest.pluginFun()
-
-            val intent = Intent()
-            intent.component = ComponentName(
-                "com.liyihuanx.plugin",
-                "com.liyihuanx.plugin.MainActivity"
-            )
+            val intent = Intent(this, ProxyActivity::class.java)
             startActivity(intent)
-            // 启动Activity时到进入ASM的流程
+//            loadPluginActivity()
+
+            // 启动Activity时到进入ASM的流程，拿到intent修改成ProxyActivity
             // activity
             //   -> Instrumentation#execStartActivity
             //   -> ActivityTaskManager#IActivityTaskManagerSingleton = (AMS)
@@ -45,11 +39,9 @@ class MainActivity : AppCompatActivity() {
             // -> ClientTransactionHandler.scheduleTransaction
             // -> sendMessage(ActivityThread.H.EXECUTE_TRANSACTION, transaction);
             // -> mH.handleMessage()
-            // 怎么回的intent
+            // 拿到intent修改成 MainActivity
 
         }
-
-
     }
 
     /**
@@ -57,7 +49,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun loadPluginClass() {
         val pathClassloader =
-            PathClassLoader("/data/data/com.liyihuanx.myplugin/fix1.dex", classLoader)
+            PathClassLoader("/data/data/com.liyihuanx.myplugin/plugin-debug.apk", classLoader)
         val clazz = pathClassloader.loadClass("com.liyihuanx.plugin.ErrorTest")
         val method = clazz.getMethod("pluginFun")
         method.invoke(null)
@@ -67,5 +59,14 @@ class MainActivity : AppCompatActivity() {
         val clazz = Class.forName("com.liyihuanx.plugin.ErrorTest")
         val method = clazz.getMethod("pluginFun")
         method.invoke(null)
+    }
+
+    private fun loadPluginActivity(){
+        val intent = Intent()
+        intent.component = ComponentName(
+            "com.liyihuanx.plugin",
+            "com.liyihuanx.plugin.MainActivity"
+        )
+        startActivity(intent)
     }
 }
