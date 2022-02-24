@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         tvCenter.setOnClickListener {
-            val intent = Intent(this, ProxyActivity::class.java)
-            startActivity(intent)
-//            loadPluginActivity()
+//            val intent = Intent(this, ProxyActivity::class.java)
+//            startActivity(intent)
+            loadPluginActivity()
 
             // 启动Activity时到进入ASM的流程，拿到intent修改成ProxyActivity
             // activity

@@ -1,8 +1,6 @@
 package com.liyihuanx.myplugin
 
 import android.app.Application
-import android.util.Log
-import com.liyihuanx.myplugin.hotfit.HotFixUtil
 
 /**
  * @author liyihuan
@@ -14,6 +12,7 @@ class PluginApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         PluginLoadUtil.loadPlugin(this)
-        HookAMSUtil.hookAMS()
+        HookActivityUtil.hookAMS()
+        HookActivityUtil.hookHandle()
     }
 }

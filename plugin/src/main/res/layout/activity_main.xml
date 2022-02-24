@@ -10,7 +10,7 @@
         android:id="@+id/tvCenter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello World!"
+        android:text="启动插件的Activity"
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
