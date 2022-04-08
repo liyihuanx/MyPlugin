@@ -1,6 +1,7 @@
 package com.liyihuanx.myplugin
 
 import android.app.Application
+import android.util.Log
 
 /**
  * @author liyihuan

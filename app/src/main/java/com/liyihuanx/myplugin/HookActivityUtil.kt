@@ -68,7 +68,6 @@ object HookActivityUtil {
                 var index = 0
                 for (i in args.indices) {
                     // 取出intent参数的下标
-                    Log.d("QWER", "hookAMS: $i")
                     if (args[i] is Intent) {
                         index = i
                         break
